@@ -15,7 +15,46 @@ All work below was done locally against a Hardhat node and Foundry-style Solidit
 
 ---
 
-## 1. Compile
+## 1. Local Deployment (edr-simulated Hardhat node)
+
+Since the Ritual testnet is paused, the contract was deployed against Hardhat's built-in
+`edr-simulated` local node. The deploy script (`scripts/deploy-local.ts`) first etches
+the five mock Ritual system contracts at their canonical addresses, then deploys
+`RitualPredict` with `BLOCK_TIME_MS = 200`.
+
+```
+npx hardhat run scripts/deploy-local.ts
+```
+
+**Output:**
+
+```
+── Deploying mocks at canonical Ritual addresses ──────────
+  scheduler        → 0x56e776BAE2DD60664b69Bd5F865F1180ffB7D58B
+  ritualWallet     → 0x532F0dF0896F353d8C3DD8cc134e8129DA2a3948
+  teeRegistry      → 0x9644e8562cE0Fe12b4deeC4163c064A8862Bf47F
+  httpPrecompile   → 0x0000000000000000000000000000000000000801
+  jqPrecompile     → 0x0000000000000000000000000000000000000803
+
+── Deploying RitualPredict ─────────────────────────────────
+
+Contract address : 0x5fc8d32690cc91d4c39d9d3abcbd16989f875707
+Deploy tx hash   : 0xc5c02030adf2626363b6476fda8890c9a6e025b99cb5ae0db260d028d0f8e30f
+Block number     : 6
+Gas used         : 2647953
+
+Local deployment complete.
+```
+
+| Field | Value |
+|---|---|
+| Contract address | `0x5fc8d32690cc91d4c39d9d3abcbd16989f875707` |
+| Deploy tx hash | `0xc5c02030adf2626363b6476fda8890c9a6e025b99cb5ae0db260d028d0f8e30f` |
+| Network | Local Hardhat node (edr-simulated, chainId: 31337) |
+| Block | 6 |
+| Gas used | 2,647,953 |
+
+---
 
 ```
 cd hardhat
